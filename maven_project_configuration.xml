@@ -3,22 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>org.example</groupId>
     <artifactId>untitled</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Plugin Versions -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
+        <!-- Dependency Versions -->
         <junit.version>4.13.2</junit.version>
         <mockito-core.version>4.11.0</mockito-core.version>
     </properties>
-
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
@@ -31,7 +30,6 @@
                     <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -43,44 +41,19 @@
                             <goal>prepare-agent</goal>
                         </goals>
                         <configuration>
-                            <propertyName>jacoco.argLine</propertyName>
+                            <propertyName>argLine</propertyName>
                         </configuration>
                     </execution>
                     <execution>
                         <id>report</id>
-                        <phase>test</phase> <goals>
-                        <goal>report</goal>
-                    </goals>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
-                <configuration>
-                    <argLine>@{jacoco.argLine}</argLine>
-                    <forkCount>1</forkCount>
-                    <reuseForks>false</reuseForks>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>${mockito-core.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-</project>
