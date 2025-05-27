@@ -14,6 +14,7 @@ public class LionParameterizedTest {
     private final boolean hasMane;
     private final String expectedExceptionMessage;
     private Feline feline = new Feline();
+
     public LionParameterizedTest(String sex, boolean hasMane, String expectedExceptionMessage) {
         this.sex = sex;
         this.hasMane = hasMane;
@@ -23,10 +24,17 @@ public class LionParameterizedTest {
     @Parameterized.Parameters(name = "{index}: Test sex = {0}, hasMane = {1}, expectedExceptionMessage = {2}")
     public static Collection<Object[]> lionData() {
         return Arrays.asList(new Object[][]{
+                //Позитивные тесты
                 {"Самец", true, null},
                 {"Самка", false, null},
-                {"Неизвестно", false, "Используйте допустимые значения пола животного самец или самка"}});
+                // Негативные тесты
+                {"Неизвестно", false, "Используйте допустимые значения пола животного самец или самка"},
+                {"Собака", false, "Используйте допустимые значения пола животного самец или самка"},
+
+        });
     }
+
+
     @Test
     public void doesManeReturnsCorrectMaleSex() throws Exception {
         if (expectedExceptionMessage == null) {
@@ -47,4 +55,6 @@ public class LionParameterizedTest {
             }
         }
     }
+
+
 }

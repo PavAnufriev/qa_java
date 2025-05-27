@@ -29,6 +29,7 @@ public class LionAlexTest {
         LionAlex lion = new LionAlex("Самец", feline);
         List <String> actualFriends = lion.getAlexFriends();
 
+
         System.out.println("Expected: " + expectedFriends);
         System.out.println("Actual:   " + actualFriends);
         System.out.println("Expected size: " + expectedFriends.size());
